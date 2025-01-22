@@ -3,23 +3,23 @@ logo:
   menubar:
   columns: 2
   items:
-  - id: post # 页面中高亮的 menu_id
-  theme: '#1BCDFC' # 高亮时的颜色，仅 svg 中 fill="currentColor" 时有效
-  icon: solar:documents-bold-duotone # 支持 svg/img 标签，可以定义在 icons.yml 文件中，也支持外部图片的 URL
-  title: 博客 # 标题
-  url: / # 跳转链接，支持相对路径和绝对路径
-  - id: wiki
-  theme: '#3DC550'
-  icon: solar:notebook-bookmark-bold-duotone
-  title: 文档
-  url: /wiki/
-  - id: explore
-  theme: '#FA6400'
-  icon: solar:planet-bold-duotone
-  title: 探索
-  url: /explore/
-  - id: social
-  theme: '#F44336'
-  icon: solar:chat-square-like-bold-duotone
-  title: 社交
-  url: /friends/
+- id: post # 页面中高亮的 menu_id
+theme: '#1BCDFC' # 高亮时的颜色，仅 svg 中 fill="currentColor" 时有效
+icon: solar:documents-bold-duotone # 支持 svg/img 标签，可以定义在 icons.yml 文件中，也支持外部图片的 URL
+title: 博客 # 标题
+url: / # 跳转链接，支持相对路径和绝对路径
+- id: wiki
+theme: '#3DC550'
+icon: solar:notebook-bookmark-bold-duotone
+title: 文档
+url: /wiki/
+- id: explore
+theme: '#FA6400'
+icon: solar:planet-bold-duotone
+title: 探索
+url: /explore/
+- id: social
+theme: '#F44336'
+icon: solar:chat-square-like-bold-duotone
+title: 社交
+url: /friends/
