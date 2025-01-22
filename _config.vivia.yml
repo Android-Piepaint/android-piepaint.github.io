@@ -23,8 +23,8 @@ hue: 250                         # The hue of the theme color (e.g. red: 0, oran
 
 # Personal info
 avatar:                             # Path to the avatar image relative to /source
-author: Your Name
-subtitle: This is the subtitle
+author: EDKPiepaint
+subtitle: Look at the code, you are still here.
 links:
   - name: Twitter
     icon: fa-brands fa-twitter      # Find icon codes at https://fontawesome.com/search
