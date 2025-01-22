@@ -3,14 +3,14 @@ logo:
   menubar:
   columns: 2
       items 
-     - id: post 
-       theme: '#1BCDFC' 
-       icon: solar:documents-bold-duotone
-       title: 博客 
-       url: / 
+     - id post 
+       theme '#1BCDFC' 
+       icon solar:documents-bold-duotone
+       title 博客 
+       url / 
     
-     - id: social
-       theme: '#F44336'
-       icon: solar:chat-square-like-bold-duotone
-       title: 社交
-       url: /friends/
+     - id social
+       theme '#F44336'
+       icon solar:chat-square-like-bold-duotone
+       title 社交
+       url /friends/
