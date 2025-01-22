@@ -9,6 +9,6 @@ logo:
        url: /
        
        -id: social
-       icon: solar:chat-square-like-bold-duotone
-       title: Social medias
-       url: /friends/
+       -icon: solar:chat-square-like-bold-duotone
+       -title: Social medias
+       -url: /friends/
