@@ -4,11 +4,9 @@ logo:
   columns: 2
   items: 
   - id: post
-   theme: '#1BCDFC'
    icon: solar:documents-bold-duotone
    title: Blog
   - id: social
-   theme: '#F44336'
    icon: solar:chat-square-like-bold-duotone
    title: Social medias
    url: /friends/
