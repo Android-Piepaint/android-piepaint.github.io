@@ -2,7 +2,7 @@ logo:
   subtitle: 'Look at the code, you are still here | Always alive for 30 years.'
   menubar:
   columns: 2
-      items: 
+      items 
      - id: post 
        theme: '#1BCDFC' 
        icon: solar:documents-bold-duotone
