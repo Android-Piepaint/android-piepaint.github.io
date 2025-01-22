@@ -8,7 +8,7 @@ logo:
        title: Blog
        url: /
        
-     - id: social
+       -id: social
        icon: solar:chat-square-like-bold-duotone
        title: Social medias
        url: /friends/
