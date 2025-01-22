@@ -1,6 +1,6 @@
 logo:
   subtitle: 'Look at the code, you are still here | Always alive for 30 years.'
-  menubar:
+menubar:
   columns: 2
   items:
 - id: post # 页面中高亮的 menu_id
