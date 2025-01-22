@@ -22,7 +22,7 @@ hue: 250                         # The hue of the theme color (e.g. red: 0, oran
                                  # Visit `saicaca.github.io/vivia-preview` to preview the theme color
 
 # Personal info
-avatar:                             # Path to the avatar image relative to /source
+avatar: https://avatars.githubusercontent.com/u/73344795?s=400&u=70d863449d42cd4da6fd7215b84aebbd11d1c95e&v=4                            # Path to the avatar image relative to /source
 author: EDKPiepaint
 subtitle: Look at the code, you are still here.
 links:
