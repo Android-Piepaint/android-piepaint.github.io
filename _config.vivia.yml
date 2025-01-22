@@ -13,7 +13,7 @@ favicon:                   # Path to the custom favicon relative to /source (e.g
 # Banner
 banner:
   enable: false                  # Display banner
-  url:                           # Path to the banner image relative to /source. Web url is also supported
+  url: https://github.com/Android-Piepaint/android-piepaint.github.io/blob/main/2b54d41dfed991fc2e27a7470612de8a.jpeg                          # Path to the banner image relative to /source. Web url is also supported
   position: center               # Specifies the alignment of the image, see the "object-position" property in CSS
   onAllPages: true               # Display banner on all pages instead of only the home page
 
@@ -29,12 +29,12 @@ links:
   - name: Twitter
     icon: fa-brands fa-twitter      # Find icon codes at https://fontawesome.com/search
     url: https://twitter.com
-  - name: Steam
+  - name: GitLab
     icon: fa-brands fa-steam
     url: https://store.steampowered.com
   - name: GitHub
     icon: fa-brands fa-github
-    url: https://github.com
+    url: https://github.com/Android-Piepaint
 
 # Sidebar
 sidebar:
