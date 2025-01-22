@@ -3,9 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: EDKPiepaint's collections
+title: EDKPiepaint
 avatar: https://avatars.githubusercontent.com/u/73344795?s=400&u=70d863449d42cd4da6fd7215b84aebbd11d1c95e&v=4
-subtitle: 'Look at the code, you are still here.'
+subtitle: 'Look at the code, 
+you are still here.'
 description: 'A simple blog site using hexo.'
 keywords:
 author: EDKPiepaint
