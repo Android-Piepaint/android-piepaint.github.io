@@ -3,10 +3,10 @@ logo:
   menubar:
   columns: 2
   items: 
-  - id: post
-    icon: solar:documents-bold-duotone
-    title: Blog
-  - id: social
-    icon: solar:chat-square-like-bold-duotone
-    title: Social medias
-    url: /friends/
+       id: post
+       icon: solar:documents-bold-duotone
+      title: Blog
+      id: social
+      icon: solar:chat-square-like-bold-duotone
+      title: Social medias
+      url: /friends/
