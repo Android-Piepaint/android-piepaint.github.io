@@ -254,7 +254,7 @@ For instructions about how to compile UEFI firmware and flashing it, they are [l
 git clone --recursive git@github.com:edk2-porting/edk2-msm.git
 ```
 
-Replace the dtb file "`sm8150-xiaomi-nabu.dtb`" in "`edk2-msm/Platform/Xiaomi/sm8150/FdtBlob/nabu/`" with the kernel DTB file "`sm8150-xiaomi-nabu.dtb`" which you used in arm ubuntu. rename to "`sm8150-xiaomi-nabu.dtb`"  and build image:
+Replace the dtb file "`sm8150-xiaomi-nabu.dtb`" in "`edk2-msm/Platform/Xiaomi/sm8150/FdtBlob/nabu/`" with the kernel DTB file "`sm8150-xiaomi-nabu.dtb`" which you used in your kernel repository. rename to "`sm8150-xiaomi-nabu.dtb`"  and build image:
 
 ```bash
 ./build.sh -d nabu
