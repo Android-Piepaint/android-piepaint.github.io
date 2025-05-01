@@ -13,6 +13,10 @@
 * [Enable UEFI on any Linux distributions](installation-guide/enable-uefi-on-any-linux-distributions.md)
 * [Ubuntu installation guide ( New method )](installation-guide/ubuntu-installation-guide-new-method.md)
 
+***
+
+* [Boot your system via U-Boot](boot-your-system-via-u-boot.md)
+
 ## Download
 
 * [Resource download](download/resource-download.md)
