@@ -5,13 +5,9 @@ icon: microchip
 
 # Enable UEFI on any Linux distributions
 
-
-
 ### Get the Device Tree config file
 
 In [computing](https://en.wikipedia.org/wiki/Computing), a devicetree (also written device tree) is a [data structure](https://en.wikipedia.org/wiki/Data_structure) describing the hardware components of a particular computer so that the [operating system](https://en.wikipedia.org/wiki/Operating_system)'s [kernel](https://en.wikipedia.org/wiki/Kernel_\(operating_system\)) can use and manage those components, including the [CPU](https://en.wikipedia.org/wiki/Central_processing_unit) or CPUs, the [memory](https://en.wikipedia.org/wiki/Computer_memory), the [buses](https://en.wikipedia.org/wiki/Bus_\(computing\)) and the [integrated peripherals](https://en.wikipedia.org/wiki/Integrated_peripheral).
-
-
 
 {% hint style="info" %}
 Device tree is widely used on ARM64 platform when it uses Linux kernel, instead of ACPI. The latter can be found on most x86\_64 based devices.
@@ -70,7 +66,7 @@ The above command requires your system to have the correct `deb-src` lines in `/
   ```
 {% endhint %}
 
-On Arch Linux(and distributions based on it):
+On Arch Linux (and distributions based on it):
 
 Install the [base-devel](https://archlinux.org/packages/?name=base-devel) [meta package](https://wiki.archlinux.org/title/Meta_package), which pulls in necessary packages such as [make](https://archlinux.org/packages/?name=make) and [gcc](https://archlinux.org/packages/?name=gcc). It is also recommended to install the following packages, as listed in the default Arch kernel [PKGBUILD](https://gitlab.archlinux.org/archlinux/packaging/packages/linux/-/blob/main/PKGBUILD): [xmlto](https://archlinux.org/packages/?name=xmlto), [kmod](https://archlinux.org/packages/?name=kmod), [inetutils](https://archlinux.org/packages/?name=inetutils), [bc](https://archlinux.org/packages/?name=bc), [libelf](https://archlinux.org/packages/?name=libelf), [git](https://archlinux.org/packages/?name=git), [cpio](https://archlinux.org/packages/?name=cpio), [perl](https://archlinux.org/packages/?name=perl), [tar](https://archlinux.org/packages/?name=tar), [xz](https://archlinux.org/packages/?name=xz).
 
@@ -108,17 +104,14 @@ Simply enter these commands on terminal:
 {% code overflow="wrap" fullWidth="true" %}
 ```bash
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu xiaomi_nabu_maverick_defconfig    #For mainline kernel, its make defconfig sm8150.config
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image.gz dtbs
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- 
 make ARCH=arm64 install INSTALL_PATH=../install/boot
 make ARCH=arm64 dtbs_install INSTALL_DTBS_PATH=../install/boot/dtbs
-
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules
-rm -rf ../install/lib/modules/
 make ARCH=arm64 modules_install INSTALL_MOD_PATH=../install
 ```
 {% endcode %}
 
-Notice the Image.gz is the Android kernel image we won't use. After compiling kernel, you will find the two files we need: a sysmap file and the final kernel image(name begin with "vmlinuz"). Copy them to your tablet's EFI directory.
+Notice the Image.gz is the Android kernel image we won't use. After compiling kernel, you will find the two files we need: a sysmap file and the final kernel image (name begin with "vmlinuz") . Copy them to your tablet's EFI directory.
 
 ```bash
 sudo cp config-6.1.10-nabu System.map-6.1.10-nabu vmlinuz-6.1.10-nabu /boot
@@ -251,6 +244,12 @@ UUID=EE48-EE55  /boot/efi       vfat    umask=0077      0
 
 We will use Renegade Project EFI firmware for example. Clone the repository to your disk:
 
+{% hint style="info" %}
+An alternative choice is [Aloha firmware](https://github.com/Project-Aloha/mu_aloha_platforms), which is based on Microsoft's MU firmware. It demonstrates an AArch64 UEFI implementation for hacked devices with Qualcomm silicons. Currently it is able to boot Windows and Linux. Please be aware that devices with no `dsdt` support have limited support.
+
+For instructions about how to compile UEFI firmware and flashing it, they are [located here.](https://github.com/Project-Aloha/mu_aloha_platforms) You can also download their prebuilt binaries [at here.](https://github.com/Project-Aloha/mu_aloha_platforms/releases)
+{% endhint %}
+
 ```
 git clone --recursive git@github.com:edk2-porting/edk2-msm.git
 ```
@@ -293,11 +292,62 @@ sudo grub-install --target=arm64-efi --boot-directory=/boot
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+### DTB Overwrite
+
+{% hint style="info" %}
+On recent kernels (6.12 or above), device trees from mainline kernels may not work perfectly on your tablet, even the device tree is compatible with older kernels. The most common affected feature is charger.&#x20;
+{% endhint %}
+
+Since recent Arch Linux ( Now it's the only option you can choose by default ) images are shipped with a pre-built kernel, it would be easy to make your system bootable via UEFI firmware. But you can also continue using your custom kernel to finish this part. Using a bootloader supports overwriting DTB files is useful when you have multiple kernels installed.
+
+#### Install bootloader
+
+We'll use `systemd-boot` as an example:
+
+```sh
+sudo bootctl install
+```
+
+Now the bootloader is installed. But we need to write a configuration file to tell bootloader how to boot system properly.
+
+{% hint style="info" %}
+**Tip:** After changing the configuration, run `bootctl` (without any arguments) to make sure that systemd-boot will be able to parse it properly.
+{% endhint %}
+
+#### Adding loaders for systemd-boot
+
+_systemd-boot_ will search for _`.conf`_ files in `/loader/entries/` on the [EFI system partition](https://wiki.archlinux.org/title/EFI_system_partition) it was launched from and additionally the [XBOOTLDR](https://wiki.archlinux.org/title/Systemd-boot#Installation_using_XBOOTLDR) partition on the same disk.
+
+Go to EFI system partition, then the `loader` directory, then `entries` . Using `touch` command to create a `.conf` file.&#x20;
+
+```sh
+sudo touch Arch.conf    #Replace "Arch" With any name you want.
+```
+
+Write an configuration file, below is an example:
+
+```sh
+esp/loader/entries/arch.conf
+
+title   Arch Linux
+linux   /vmlinuz-linux        #Replace vmlinuz-linux with actual name of kernel.
+initrd  /initramfs-linux.img
+options root=/dev/sda32 pd_ignore_unused clk_ignore_unused rw
+devicetree /devicetree-file.dtb    #Replace it with your actual name of your DTB file.
+```
+
+{% hint style="info" %}
+**NOTE:** Entries in _`esp`_`/loader/entries/*.conf` can only use files (e.g. kernels, initramfs, images, etc.) in _`esp`_`/` and entries in _`boot`_`/loader/entries/*.conf` can only use files in _`boot`_`/`.
+
+* systemd-boot does not accept tabs for indentation, use spaces instead.
+* `default` and `timeout` can be changed in the boot menu itself and changes will be stored as UEFI variables `LoaderEntryDefault` and `LoaderConfigTimeout`, overriding these options.
+{% endhint %}
+
+Once you finished these steps above, reboot your tablet and check if it works.
+
 ### Ubuntu specifics
 
 #### Install GRUB on Ubuntu​
-
-
 
 {% hint style="info" %}
 On recent Ubuntu images, these steps are no longer needed.

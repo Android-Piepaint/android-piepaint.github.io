@@ -179,7 +179,7 @@ Number  Start   End     Size    File system  Name             Flags
 30      10.7GB  10.9GB  134MB   ext4         rescue
 ```
 
-Note the end of the last partition in the above list, 10.9GB, this number will be used as the start of the new `userdata` partition, followed by the end of the partition. Let say that we want to make an approx 40GB `userdata` partititon using the following command:&#x20;
+Note the end of the last partition in the above list, 10.9GB, this number will be used as the start of the new `userdata` partition, followed by the end of the partition. Let say that we want to make an approx 40GB `userdata` partition using the following command:&#x20;
 
 ```bash
 (parted) mkpart userdata   10.9GB 50GB
@@ -236,17 +236,11 @@ Exit the parted tool finally.
 
 Now `userdata` resizing is done. Restart your tablet to apply changes.
 
-
-
-
-
 {% hint style="info" %}
 Here comes a fun thing:
 
-Android stores your data inside the `userdata` partition. When you reset your Android device to its factory default settings, your data will be erased. This is because factory reset is equal to format the `userdata` partition using ext4 filesystem. However, if you delete the `userdata` partition and recreate it without formating, your data will be saved after a reboot. Probably because Android can fix this problem automatically.
+Android stores your data inside the `userdata` partition. When you reset your Android device to its factory default settings, your data will be erased. This is because factory reset is equal to format the `userdata` partition using ext4 filesystem. However, if you delete the `userdata` partition and recreate it without formatting, your data will be saved after a reboot. Probably because Android can fix this problem automatically.
 {% endhint %}
-
-
 
 {% hint style="danger" %}
 ```
@@ -254,13 +248,11 @@ If you added "ext4" behind the "userdata" text, your data will be erased when yo
 ```
 {% endhint %}
 
-
-
 ### Install new system
 
 Enter fastboot mode and repeat the [previous steps](install-ubuntu-on-your-tablet-legacy-images-only.md#partition-the-ufs).
 
-We'll use the free space for our Ubuntu installtion:
+We'll use the free space for our Ubuntu installation:
 
 ```bash
 (parted) mkpart pmos ext4 50.0GB 126GB
@@ -319,13 +311,11 @@ Exit the parted tool and reboot once again.
 
 Now we need to check which slot Android is installed.
 
-
-
 {% hint style="info" %}
-**NOTE:** The concept of "slot"  probably unfamiliar for you, since it was included in Android 10 as a feature, which called "**Dynamic Partitions**". Dynamic partitions are a userspace partitioning system for Android. About its further infomations, [located here](https://source.android.com/docs/core/ota/dynamic_partitions/implement).
+**NOTE:** The concept of "slot"  probably unfamiliar for you, since it was included in Android 10 as a feature, which called "**Dynamic Partitions**". Dynamic partitions are a userspace partitioning system for Android. About its further information, [located here](https://source.android.com/docs/core/ota/dynamic_partitions/implement).
 {% endhint %}
 
-You can check this infomation via `fastboot` . Command is listed below:
+You can check this information via `fastboot` . Command is listed below:
 
 ```bash
 fastboot getvar current-slot
@@ -341,14 +331,12 @@ Setting current slot to 'a'                        OKAY [  0.049s]
 Finished. Total time: 0.064s
 ```
 
-Now, we are ready to flash the system image. But before we start, we need to disable Android Verified Boot (AVB) feature, otherwise it will pervent booting Ubuntu system.
-
-
+Now, we are ready to flash the system image. But before we start, we need to disable Android Verified Boot (AVB) feature, otherwise it will prevent booting Ubuntu system.
 
 {% hint style="info" %}
 AVB is implementation of verified boot process, current version (since Android 8 Oreo) is called AVB 2.0. Verified boot is a process of assuring the end user of the integrity of the software running on a device. It typically starts with a read-only portion of the device firmware which loads code and executes it only after cryptographically verifying that the code is authentic. It also helps in implementing rollback protection.
 
-&#x20;More infomations and technical details, [located here.](https://wiki.postmarketos.org/wiki/Android_Verified_Boot_\(AVB\))
+&#x20;More information and technical details, [located here.](https://wiki.postmarketos.org/wiki/Android_Verified_Boot_\(AVB\))
 {% endhint %}
 
 Flash the `vbmeta` with `vbmeta_disabled.img` to disable this feature:
@@ -383,7 +371,7 @@ Writing 'boot_a'                                   OKAY [  0.052s]
 Finished. Total time: 0.663s
 ```
 
-Flash `rootfs` image, please use the partition name you created, this process will takew a while, grab another beer.
+Flash `rootfs` image, please use the partition name you created, this process will take a while, grab another beer.
 
 ```bash
 fastboot flash partition_name /path/to/rootfs.img
