@@ -43,6 +43,12 @@ We are sick of not receiving updates shortly after buying new tablets. Sick of t
 
 {% embed url="https://xdaforums.com/t/rom-arch-linux-on-xiaomi-pad-5-nabu.4649938/" %}
 
+## Repositories
+
+{% embed url="https://gitlab.com/sm8150-mainline/linux" %}
+
+
+
 {% embed url="https://github.com/timoxa0/Guide-Linux-Nabu/tree/main" %}
 
 {% embed url="https://gitlab.postmarketos.org/panpanpanpan/sm8150-mainline" %}

@@ -23,6 +23,8 @@ git clone https://github.com/maverickjb/linux-6.1.10.git
 
 ```bash
 git clone https://gitlab.postmarketos.org/panpanpanpan/sm8150-mainline.git
+
+git clone https://gitlab.com/sm8150-mainline/linux.git 
 ```
 
 {% hint style="warning" %}
