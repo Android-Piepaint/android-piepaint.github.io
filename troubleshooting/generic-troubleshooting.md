@@ -20,7 +20,7 @@ fastboot flash boot /path/to/boot.img
 
 ### Device booted with graphical glitches
 
-Sometimes, your tablet can run into graphical glitch. This is because the GPU driver didn't load properly, a force reboot can solve this problem. This situation can also take place when tablet is woke up from suspend mode when the "Close lid to suspend" feature was added in kernel 6.1 . The solution is simple: Press power button (or close the cover on your case, )to suspend, then press power button again (or open the cover ) to unlock your tablet.
+Sometimes, your tablet can run into graphical glitch. This is because the GPU driver didn't load properly, a force reboot can solve this problem. This situation can also take place when tablet is woke up from suspend mode when the "Close lid to suspend" feature was added in kernel 6.1 . The solution is simple: Press power button (or close the cover on your case, ) to suspend, then press power button again (or open the cover ) to unlock your tablet.
 
 ### Kernel panic: unable to mount rootfs at unknown x,y(x and y are some random numbers)&#x20;
 
