@@ -28,9 +28,9 @@ git clone https://gitlab.postmarketos.org/panpanpanpan/sm8150-mainline.git
 {% hint style="warning" %}
 **NOTE**: **if you want to use the latest mainline kernel as daily driver:**
 
-* Driver for the PM8150B charger is broken in mainline, the only way to charge your tablet is by simply fixing the In8000\* fast charger driver for mainline. About the patch files, they're [located here](https://file.chyk.ink/Linux/nabu-patches), for fixing the charger, [see below](enable-uefi-on-any-linux-distributions.md#compile-the-linux-kernel);
+* Driver for the PM8150B charger is broken in mainline, the only way to charge your tablet is by simply fixing the In8000\* fast charger driver for mainline. About the patch files, they're [located here](https://g.tx0.su/tx0/nabu-mainline-patches/src/branch/main/0003-NABU-dts-enable-ln8000-charger-reduce-charge-voltage.patch), for fixing the charger, [see below](enable-uefi-on-any-linux-distributions.md#compile-the-linux-kernel) ( 6.14 only, No longer needed to patch for kernel 6.15 or above) ;
 * Based on my personal tests, microphones are available, but unusable. Because the record volume is **extremely LOUD**, no matter which volume you've selected. If you keep using it (as for now), you will damage your ears and speakers !
-* Real time clock (RTC) is working, but a manual patch is required.
+* ~~Real time clock (RTC) is working, but a manual patch is required.~~ (No longer needed to patch since kernel 6.15 or above)
 {% endhint %}
 
 Once it finished, go to the repository's directory. We need to find the proper device tree file that ended with file extension name (\*.dts). It is stored under `arch/arm64/boot/dts` . `cd` into this directory, find the DTS file named "`sm8150-xiaomi-nabu.dts`".
@@ -94,10 +94,12 @@ Before you start your compilation, you need to patch the kernel for charger and 
 
 Navigate to your kernel repository to continue:
 
+{% code overflow="wrap" %}
 ```bash
 git apply /path/to/rtc.patch        #For RTC.
-mv /path/to/ln8000_charger.c drivers/power/supply        #For charger.
+git apply /path/to/0003-NABU-dts-enable-ln8000-charger-reduce-charge-voltage.patch        #For charger.
 ```
+{% endcode %}
 
 Simply enter these commands on terminal:
 
