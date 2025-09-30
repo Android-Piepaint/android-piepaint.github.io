@@ -12,6 +12,7 @@
 * [Install Ubuntu on your tablet (Legacy images only)](installation-guide/install-ubuntu-on-your-tablet-legacy-images-only.md)
 * [Enable UEFI on any Linux distributions](installation-guide/enable-uefi-on-any-linux-distributions.md)
 * [Ubuntu installation guide ( New method )](installation-guide/ubuntu-installation-guide-new-method.md)
+* [Fedora installation guide](installation-guide/fedora-installation-guide.md)
 
 ***
 
@@ -23,8 +24,7 @@
 * [Download Ubuntu & Arch Linux ARM](https://mega.nz/folder/CVMGEAiB#7oazR3wpkKdAH2eZChtRTg)
 * [Orangefox Recovery image (NO UI)](https://drive.google.com/file/d/1gCNtoDMNCAmMR61xegvCC3mxv28gMJbi/view?usp=drive_link)
 * [Download TWRP Recovery](https://sourceforge.net/projects/xiaomi-pad-5/files/TWRP/Android%2014/)
-* [Download Fedora Linux](https://timoxa0.su/share/nabu/images/fedora.img.xz)
-* [Arch Linux by Timofey](https://f.tx0.su/share/nabu/packages/v4/12-05-25/)
+* [Download Fedora Linux](https://github.com/jhuang6451/nabu_fedora)
 
 ## Troubleshooting
 
